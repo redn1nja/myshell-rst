@@ -32,6 +32,14 @@ fn execute(command: Vec<&str>) -> Result<()>{
         "mcd" => {match builtins::builtins::mcd(command){
             Ok(result) => Ok(result),
             Err(e) => Err(ReadlineError::Io(e))
+        }},
+        "mecho" => {match builtins::builtins::mecho(command){
+            Ok(result) => Ok(result),
+            Err(e) => Err(ReadlineError::Io(e))
+        }}
+        "mexit" => {match builtins::builtins::mexit(command) {
+            Ok(result) => Ok(result),
+            Err(e) => Err(ReadlineError::Io(e))
         }}
         _ => {
             match Command::new(command[0]).args(&command[1..]).spawn() {

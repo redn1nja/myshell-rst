@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 rustyline = "15.0.0"
+homedir = "0.3.4"
