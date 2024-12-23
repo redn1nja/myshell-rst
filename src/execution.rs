@@ -7,13 +7,7 @@ pub fn main_loop(mut rl: &mut rustyline::Editor<rl::MyHelper, DefaultHistory>) {
     loop{
         let line = rl::parse_input(&mut rl);
         let command = line.split_whitespace().collect::<Vec<&str>>();
-        match command.len() {
-            0 => continue,
-            _ => match execute(command){
-                Ok(_) => continue,
-                Err(e) => println!("Error: {}", e)
-            },
-        }
+        exec(command);
     }
 }
 
@@ -47,3 +41,12 @@ fn create_child(command: Vec<&str>) -> rustyline::Result<()> {
     }
 }
 
+fn exec(command: Vec<&str>) {
+    match command.len() {
+        0 => return,
+        _ => match execute(command){
+            Ok(_) => return,
+            Err(e) => println!("Error: {}", e)
+        },
+    }
+}
